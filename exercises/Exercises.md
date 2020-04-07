@@ -25,7 +25,7 @@ inheritors, being remote, would not be likely to abandon their just
 * either `quip` or `sleep` matched case sensitively
 
 ```bash
-$ grep --color=always 'professor' | grep -e 'quip' -e 'sleep'
+$ grep --color=always -i 'professor' | grep -e 'quip' -e 'sleep'
 equipment of a professor of the healing craft. When we were shown in,
 its potency; and she fell into a deep sleep. When the Professor was
 sleeping, and the Professor seemingly had not moved from his seat at her
@@ -66,7 +66,7 @@ $ grep --color=auto -n 'Zooelogical Gardens' dracula.txt
 
 ```bash
 $ grep -cwi 'the' dracula.txt
-8090
+5919
 ```
 
 **h)** The below code snippet tries to get number of empty lines, but apparently shows wrong result, why?
