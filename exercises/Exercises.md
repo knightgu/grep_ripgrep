@@ -8,14 +8,14 @@ Create `exercises` directory and within it, create another directory for this ch
 $ mkdir -p exercises/freq_options && cd $_
 $ wget https://www.gutenberg.org/files/345/345.txt -O dracula.txt
 
-$ grep ##### add your solution here
+$ grep --color=auto 'ablaze' dracula.txt
 the room, his face all ablaze with excitement. He rushed up to me and
 ```
 
 **b)** Display all lines containing `abandon` as a whole word.
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=auto -w 'abandon' dracula.txt
 inheritors, being remote, would not be likely to abandon their just
 ```
 
@@ -25,7 +25,7 @@ inheritors, being remote, would not be likely to abandon their just
 * either `quip` or `sleep` matched case sensitively
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=always 'professor' | grep -e 'quip' -e 'sleep'
 equipment of a professor of the healing craft. When we were shown in,
 its potency; and she fell into a deep sleep. When the Professor was
 sleeping, and the Professor seemingly had not moved from his seat at her
@@ -35,7 +35,7 @@ to sleep, and something weaker when she woke from it. The Professor and
 **d)** Display first three lines containing `Count`
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=auto -m3 'Count' dracula.txt
 town named by Count Dracula, is a fairly well-known place. I shall enter
 must ask the Count all about them.)
 Count Dracula had directed me to go to the Golden Krone Hotel, which I
@@ -44,7 +44,7 @@ Count Dracula had directed me to go to the Golden Krone Hotel, which I
 **e)** Display first six lines containing `Harker` but not either of `Journal` or `Letter`
 
 ```bash
-$ grep ##### add your solution here
+$ grep -v 'Journal' dracula.txt | grep -v 'Letter' | grep --color=auto -m6 'Harker'
 said, "The Herr Englishman?" "Yes," I said, "Jonathan Harker." She
 "I am Dracula; and I bid you welcome, Mr. Harker, to my house. Come in;
 I shall be all alone, and my friend Harker Jonathan--nay, pardon me, I
@@ -56,7 +56,7 @@ junior partner of the important firm Hawkins & Harker; and so, as you
 **f)** Display lines containing `Zooelogical Gardens` along with line number prefix.
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=auto -n 'Zooelogical Gardens' dracula.txt
 5597:         _Interview with the Keeper in the Zooelogical Gardens._
 5601:the keeper of the section of the Zooelogical Gardens in which the wolf
 8042:the Zooelogical Gardens a young one may have got loose, or one be bred
@@ -65,7 +65,7 @@ $ grep ##### add your solution here
 **g)** Find total count of whole word `the` (irrespective of case).
 
 ```bash
-$ grep ##### add your solution here
+$ grep -cwi 'the' dracula.txt
 8090
 ```
 
@@ -75,6 +75,7 @@ $ grep ##### add your solution here
 $ grep -cx '' dracula.txt
 0
 ```
+The file downloaded is of 'CRLF' line ending. Need to convert it to 'LF'.
 
 # BRE/ERE Regular Expressions
 
