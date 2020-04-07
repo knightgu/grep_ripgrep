@@ -6,7 +6,8 @@ Create `exercises` directory and within it, create another directory for this ch
 
 ```bash
 $ mkdir -p exercises/freq_options && cd $_
-$ wget https://www.gutenberg.org/files/345/345.txt -O dracula.txt
+$ #wget https://www.gutenberg.org/files/345/345.txt -O dracula.txt
+$ curl https://www.gutenberg.org/files/345/345.txt --output dracula.txt
 
 $ grep --color=auto 'ablaze' dracula.txt
 the room, his face all ablaze with excitement. He rushed up to me and
