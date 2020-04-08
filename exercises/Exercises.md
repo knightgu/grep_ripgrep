@@ -77,6 +77,14 @@ $ grep -cx '' dracula.txt
 0
 ```
 The file downloaded is of 'CRLF' line ending. Need to convert it to 'LF'.
+```bash
+$ file dracula.txt
+dracula.txt: ASCII text, with CRLF line terminators
+$ file dracula_unix.txt
+dracula_unix.txt: ASCII text
+$ grep -cx '' dracula.txt
+2559
+```
 
 # BRE/ERE Regular Expressions
 
