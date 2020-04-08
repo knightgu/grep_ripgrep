@@ -80,9 +80,9 @@ The file downloaded is of 'CRLF' line ending. Need to convert it to 'LF'.
 ```bash
 $ file dracula.txt
 dracula.txt: ASCII text, with CRLF line terminators
-$ file dracula_unix.txt
-dracula_unix.txt: ASCII text
-$ grep -cx '' dracula.txt
+$ tr -d '\015' <dracula.txt | file -
+/dev/stdin: ASCII text
+$ tr -d '\015' <dracula.txt | grep -xc ''
 2559
 ```
 
@@ -177,7 +177,7 @@ Create `exercises/context_matching` directory. Input file is available from [lea
 **a)** Display all lines matching `raise` and one line before it.
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=auto -B1 'raise' palindrome.py
     if re.search(r'[^a-zA-Z]', ip_str):
         raise ValueError("Characters other than alphabets and punctuations")
     elif len(ip_str) < 3:
@@ -188,7 +188,7 @@ $ grep ##### add your solution here
 
 ```bash
 $ lines='rat\ndog\nbat\n\n42\n3.14\n\nhi there\nhave a nice day'
-$ printf "$lines" | grep ##### add your solution here
+$ printf "$lines" | grep -A0 --group-separator=$'\n' .
 rat
 dog
 bat
@@ -201,6 +201,9 @@ bat
 hi there
 have a nice day
 ```
+Follow hints from:
+[https://stackoverflow.com/a/922538/1290254](https://stackoverflow.com/a/922538/1290254)
+and [https://unix.stackexchange.com/a/209951/404650](https://unix.stackexchange.com/a/209951/404650).
 
 # Recursive search
 
