@@ -91,10 +91,10 @@ $ grep -cx '' dracula.txt
 **a)** Extract all pairs of `()` with/without text inside them, provided they do not contain `()` characters inside.
 
 ```bash
-$ echo 'I got (12) apples' | grep ##### add your solution here
+$ echo 'I got (12) apples' | grep --color=auto -oE '\([^()]*\)'
 (12)
 
-$ echo '((2 +3)*5)=25 and (4.3/2*()' | grep ##### add your solution here
+$ echo '((2 +3)*5)=25 and (4.3/2*()' | grep --color=auto -oE '\([^()]*\)'
 (2 +3)
 ()
 ```
@@ -103,7 +103,7 @@ $ echo '((2 +3)*5)=25 and (4.3/2*()' | grep ##### add your solution here
 
 ```bash
 $ lines='lovely\n1 dentist\n2 lonely\neden\nfly away\ndent'
-$ printf "$lines" | grep ##### add your solution here
+$ printf "$lines" | grep --color=auto -E '^den|ly$'
 lovely
 2 lonely
 dent
@@ -112,7 +112,7 @@ dent
 **c)** Extract all whole words that contains `42` but not at edge of word. Assume a word cannot contain `42` more than once.
 
 ```bash
-$ echo 'hi42bye nice1423 bad42 cool_42a 42fake' | grep ##### add your solution here
+$ echo 'hi42bye nice1423 bad42 cool_42a 42fake' | grep --color=auto -oE '\b\w+42\w+\b'
 hi42bye
 nice1423
 cool_42a
@@ -121,7 +121,7 @@ cool_42a
 **d)** Each line in given input contains a single word. Match all lines containing `car` but not as a whole word.
 
 ```bash
-$ printf 'car\nscar\ncare\npot\nscare\n' | grep ##### add your solution here
+$ printf 'car\nscar\ncare\npot\nscare\n' | grep --color=auto -e '\Bcar' -e 'car\B'
 scar
 care
 scare
@@ -130,7 +130,7 @@ scare
 **e)** For `dracula.txt` file, count the total number of lines that contain `removed` or `rested` or `received` or `replied` or `refused` or `retired` as whole words.
 
 ```bash
-$ grep ##### add your solution here
+$ grep -cwE 're(mov|st|ceiv|pli|fus|tir)ed' dracula.txt
 73
 ```
 
@@ -138,7 +138,7 @@ $ grep ##### add your solution here
 
 ```bash
 $ words='sequoia subtle exhibit sets tests sit'
-$ echo "$words" | grep ##### add your solution here
+$ echo "$words" | grep --color=auto -owE 's\w*e\w*t\w*|s\w*t\w*e\w*'
 subtle
 sets
 ```
@@ -146,7 +146,7 @@ sets
 **g)** Extract all whole words having the same first and last character.
 
 ```bash
-$ echo 'oreo not a pip roar took 22' | grep ##### add your solution here
+$ echo 'oreo not a pip roar took 22' | grep --color=auto -owE '(\w)\w*(\1)|\w'
 oreo
 a
 pip
@@ -157,17 +157,18 @@ roar
 **h)** Match all lines containing `*[5]`
 
 ```bash
-$ printf '4*5]\n(9-2)*[5]\n[5]*3\nr*[5\n' | grep ##### add your solution here
+$ printf '4*5]\n(9-2)*[5]\n[5]*3\nr*[5\n' | grep --color=auto -F '*[5]'
 (9-2)*[5]
 ```
 
 **i)** For the given greedy quantifiers, what would be the equivalent form using `{m,n}` representation?
 
-* `?` is same as
-* `*` is same as
-* `+` is same as
+* `?` is same as `{,1}`
+* `*` is same as `{0,}`
+* `+` is same as `{1,}`
 
 **j)** In ERE, `(a*|b*)` is same as `(a|b)*` - True or False?
+FALSE. `(a*|b*)` cannot match `abab` etc.
 
 # Context matching
 
