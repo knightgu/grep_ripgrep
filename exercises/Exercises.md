@@ -218,7 +218,7 @@ $ repo='https://github.com/learnbyexample/Command-line-text-processing.git'
 $ git clone -b apr19 "$repo"
 $ cd Command-line-text-processing
 
-$ grep ##### add your solution here
+$ grep --color=auto -rlE 'xargs|python3'
 gnu_grep.md
 miscellaneous.md
 wheres_my_file.md
@@ -229,7 +229,7 @@ README.md
 **b)** List all files containing `grep` but do not list if they are from `.git` or `exercises` directories.
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=auto -rl --exclude-dir={.git,exercises} 'grep'
 gnu_grep.md
 sorting_stuff.md
 file_attributes.md
@@ -246,7 +246,7 @@ perl_the_swiss_knife.md
 **c)** List all files containing `baz` if the filename ends with `.txt` but do not search hidden directories.
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=auto -rl --include='*.txt' --exclude-dir=".*" 'baz'
 exercises/GNU_grep/ex12_regex_character_class_part1/sample_words.txt
 exercises/GNU_grep/ex16_misc_and_extras/sample.txt
 exercises/GNU_grep/ex08_search_pattern_from_file.txt
@@ -255,14 +255,14 @@ exercises/GNU_grep/ex08_search_pattern_from_file.txt
 **d)** Search files ending with `.md` only in current directory (i.e. no recursive searching) and count the total number of occurrences of whole words `grep` or `sed` or `awk`.
 
 ```bash
-$ grep ##### add your solution here
+$ grep -owE 'grep|sed|awk' *.md | wc -l
 1532
 ```
 
 **e)** List all files containing `Hello` unless the filename ends with `.txt` or `.sh`
 
 ```bash
-$ grep ##### add your solution here
+$ grep --color=auto -rl --exclude=\*.{txt,sh} 'Hello'
 gnu_grep.md
 miscellaneous.md
 file_attributes.md
@@ -278,7 +278,7 @@ perl_the_swiss_knife.md
 **f)** List all files containing whole words `awk` and `perl` but not `basename`. Although not the case here, assume that filenames can contain shell special characters like space, semicolon, newline, etc.
 
 ```bash
-$ grep ##### add your solution here
+$ grep -rlZ 'awk' | xargs -0 grep -lZ 'perl' | xargs -0 grep -L 'basename'
 sorting_stuff.md
 gnu_sed.md
 gnu_awk.md
